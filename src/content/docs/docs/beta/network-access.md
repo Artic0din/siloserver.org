@@ -37,6 +37,10 @@ logs, so choose a hostname you don't mind being public.
      nodes, so each one enrolls on its own.
    - **Tags** is optional, for example `tag:silo`. Your tailnet policy or
      auth key must allow the tags.
+   - **Discovery** is on by default, so Silo apps on your tailnet can find
+     the server by its short name. The server then also answers plain HTTP
+     on port 80 with a redirect to its HTTPS address, and serves nothing else
+     there. Set it to **Off** to keep port 80 closed.
 
 Leave **Funnel — public internet access** off. It opens Silo to the whole
 internet, needs Funnel permission in your tailnet policy, and isn't well
@@ -58,13 +62,22 @@ Proxy nodes appear as their own rows, named `<hostname>-proxy-<node id>`.
 
 Install the Tailscale app on each device and sign in to the same tailnet.
 Then add the server in the Silo app using the address from the Network
-Access page, for example `https://silo.example-tailnet.ts.net`. Tailscale may
-add a suffix if the name is taken, so copy the address from the page.
+Access page, for example `https://silo.example-tailnet.ts.net`.
+
+On Apple devices, with **Discovery** on and the hostname left at `silo`, the
+Silo app lists the server on its own when you add a server. For another
+hostname, type just that name, such as `media-box`, and the app saves the
+full HTTPS address.
+
+Tailscale adds a suffix if the name is taken, for example `silo-1` when a
+`silo` machine from an earlier install is still in your tailnet. Check the
+address on the Network Access page, and remove the old machine in the
+Tailscale admin console so the short name reaches this server.
 
 Jellyfin-compatible apps use the same name on port `8096`, and
 Audiobookshelf apps use port `13378`, when those endpoints are turned on.
 Your tailnet access policy must allow ports `443`, `8096`, and `13378` for
-the devices that connect.
+the devices that connect, and port `80` for discovery.
 
 ## If it doesn't connect
 
