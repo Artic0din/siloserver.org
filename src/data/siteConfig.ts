@@ -8,24 +8,11 @@ export const SITE = {
   status: "pre-1.0",
   license: "AGPL-3.0-or-later",
   discord: "https://discord.gg/siloserver",
+  // GitHub Sponsors, as in silo-server's .github/FUNDING.yml.
+  sponsor: "https://github.com/sponsors/Quick104",
   github: {
     org: "Silo-Server",
     orgUrl: "https://github.com/Silo-Server",
     readmeUrl: "https://github.com/Silo-Server/silo-server#readme",
   },
 } as const;
-
-// Repo names used by the release-data layer.
-export const REPOS = {
-  server: "silo-server",
-  apple: "silo-apple",
-  android: "silo-android",
-  pluginSdk: "silo-plugin-sdk",
-  pluginTmdb: "silo-plugin-metadata-tmdb",
-  pluginTvdb: "silo-plugin-metadata-tvdb",
-  plugins: "silo-plugins",
-  themes: "silo-themes",
-} as const;
-
-export const repoUrl = (name: string) =>
-  `${SITE.github.orgUrl}/${name}`;
