@@ -46,10 +46,21 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: "silo docs",
+      title: "Silo docs",
       description:
         "Documentation for installing, configuring, and operating Silo.",
       favicon: "/favicon.ico",
+      // Link previews: the Silo wordmark card, at an absolute URL, as on the
+      // marketing pages. Starlight already asks for the large card.
+      head: [
+        {
+          tag: "meta",
+          attrs: { property: "og:image", content: new URL(`${base.replace(/\/$/, "")}/social-card.png`, site).href },
+        },
+        { tag: "meta", attrs: { property: "og:image:width", content: "1200" } },
+        { tag: "meta", attrs: { property: "og:image:height", content: "630" } },
+        { tag: "meta", attrs: { property: "og:image:alt", content: "Silo" } },
+      ],
       lastUpdated: true,
       customCss: ["./src/styles/docs.css"],
       editLink: {
